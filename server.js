@@ -4,6 +4,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const {Pool} = require("pg");
 const validator = require('express-validator');
+const cors = require('cors');
 
 const pool = new Pool({
     // host: 'localhost',
@@ -18,9 +19,15 @@ const pool = new Pool({
 
 })
 
+app.use(cors());
+
 // MIDDLEWARE TO ACCESS JSON PAYLOAD OF CREATE REQUEST
 app.use(express.json());
 
+
+app.get('/', async(req, res) => {
+    res.send('HOME PAGE');
+})
 
 // CREATE HOTEL
 app.post("/hotels", async (req, res) => {
