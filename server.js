@@ -6,11 +6,16 @@ const {Pool} = require("pg");
 const validator = require('express-validator');
 
 const pool = new Pool({
-    host: 'localhost',
-    user: 'postgres',
-    database: 'cyf_hotel',
-    password: 'postgres',
-    port: 5432
+    // host: 'localhost',
+    // user: 'postgres',
+    // database: 'cyf_hotel',
+    // password: 'postgres',
+    // port: 5432
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+        rejectUnauthorized: false,
+      },
+
 })
 
 // MIDDLEWARE TO ACCESS JSON PAYLOAD OF CREATE REQUEST
